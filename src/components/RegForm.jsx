@@ -1,30 +1,44 @@
 import React, { Component } from 'react'
+import Formik from 'formik';
+import Yup from 'yup';
 
 class RegForm extends Component {
     constructor() {
         super();
         this.state = {
             user : "",
-            pass : ""
+            email : ""
         };
-        this.handleBlur     = this.handleBlur.bind(this);
-        this.handleClick    = this.handleClick.bind(this);
     };
     
-    handleBlur(event) {
-        this.setState({ [event.target.name] : event.target.value });
-    }
-
-    handleClick() {
-        alert(`Username: ${this.state.user}, Password: ${this.state.pass}`);
-    }
-
     render() {
         return (
-            <form method="post">
-                <input type="text" name="user" placeholder="Username" onBlur={this.handleBlur} />
-                <input type="password" name = "pass" placeholder="Password" onBlur={this.handleBlur} />
-                <input type="button" onClick={this.handleClick} value="Submit" />
+            <form id="regForm" novalidate>
+                <legend class="h1 text-center card-head">Registeration Form</legend>
+
+                <section class="form-fields">
+                    <div class="field half">
+                        <label for="name">Full Name <span class="red">* </span></label>
+                        <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            placeholder="e.g: Mohamed"
+                            required
+                        />
+                    </div>
+
+                    <div class="field half">
+                        <label for="email">Your Email Address<span class="red">* </span></label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            placeholder="e.g: example@example.com"
+                            required
+                        />
+                    </div>
+                </section>
             </form>
         )
     }
